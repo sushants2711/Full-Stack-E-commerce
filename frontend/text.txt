@@ -1,0 +1,5 @@
+1. Develop a login,signup,verify-email,frogot-password,reset-password,delete-account,logout page created.
+
+2. api calling for some files in utils folder are any other folder 
+
+2. Signup, login and logout page created and api calling by context Api and some other files.
