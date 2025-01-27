@@ -34,7 +34,7 @@ export const loginMiddleWare = async (req, res, next) => {
             .status(400)
             .json({
                 success: false,
-                message: "Validation failed",
+                message: error.details[0].message,
                 error: error.details[0].message
             })
     }
