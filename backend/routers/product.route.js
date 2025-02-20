@@ -1,6 +1,6 @@
 import expres from "express";
 import { adminAuth } from "../middlewares/admin.auth.js";
-import { addProduct, listProducts, removeProductByID, singleProduct, singleProductByIdParams, updateProductById } from "../controllers/product.controller.js";
+import { addProduct, filterProductByUserInput, listProducts, removeProductByID, singleProduct, singleProductByIdParams, updateProductById } from "../controllers/product.controller.js";
 import { ensureAuthentication } from "../middlewares/ensureAuth.js";
 import upload from "../middlewares/multer.js";
 import { deleteProductMiddleware, productMiddleWareValidation, singleProductMiddleware, updateProductMiddlewareValidation } from "../middlewares/product.middleware.js";
@@ -30,5 +30,9 @@ productRouter.route("/update-product").put(adminAuth, upload.fields([
     {name: 'image5', maxCount:1},
     {name: 'image6', maxCount:1},
 ]), updateProductById )
+
+
+// filter product router 
+productRouter.route("/search/:key").get(filterProductByUserInput);
 
 export default productRouter

@@ -193,6 +193,7 @@ export const singleProductByIdParams = async (req, res) => {
     }
 };
 
+// update the product by ID
 export const updateProductById = async (req, res) => {
     try {
         const { id } = req.body;
@@ -266,5 +267,27 @@ export const updateProductById = async (req, res) => {
             success: false,
             message: "Internal Server Error",
         });
+    }
+};
+
+
+// filter the product when user search from backend 
+export const filterProductByUserInput = async (req, res) => {
+    try {
+        const searchKey = req.params.key;
+        const productFilterIs = await productModel.find({
+            "$or": [
+                { "name": { $regex: searchKey } },
+                { "category": { $regex: searchKey } },
+                { "brand": { $regex: searchKey } }
+            ]
+        });
+        return res.status(200)
+            .json({
+                success: true,
+                data: productFilterIs.length>0 ? productFilterIs : "No product available that you want to find it",
+            });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 };

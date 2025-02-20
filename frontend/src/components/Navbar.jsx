@@ -22,17 +22,17 @@ export const Navbar = () => {
     const handleLogout = async () => {
         try {
             const url = "http://localhost:8000/api/auth/logout"
-            const token=localStorage.getItem("token");
-            const response = await fetch (url, {
+            const token = localStorage.getItem("token");
+            const response = await fetch(url, {
                 method: "POST",
                 headers: {
                     token: token,
-                  },
+                },
             })
             const result = await response.json();
 
-            const { success, message, error } = result ;
-            if(success) {
+            const { success, message, error } = result;
+            if (success) {
                 handleSuccess(message);
                 navigate("/logout");
                 setLoginState(false);
@@ -41,16 +41,16 @@ export const Navbar = () => {
                 localStorage.removeItem("loggedInUserEmail")
                 setToken("");
             }
-            else if(!success) {
+            else if (!success) {
                 handleError(message)
             }
-            else if(error) {
+            else if (error) {
                 handleError(error)
             }
         } catch (error) {
             handleError(error)
         }
-        
+
     }
 
 

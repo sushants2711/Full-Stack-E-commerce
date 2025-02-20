@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const InputEmail = () => {
+
     return (
         <>
             <input type="email" className="w-[400px] h-10 text-center text-xl 
